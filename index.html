@@ -148,7 +148,8 @@ body {
         <li>Localizacao ........... Belem - PA</li>
         <li>Contato ................ vfabricio007@gmail.com</li>
         <li>Telefone ............... (91) 98337-7235</li>
-        <li>GitHub / LinkedIn ...... (em breve)</li>
+        <li>LinkedIn .............. linkedin.com/in/victor-fabricio-rodrigues-fonseca-3a5385386</li>
+        <li>GitHub ................. (em breve)</li>
       </ul>
     </div>
 
@@ -233,17 +234,71 @@ body {
 
 <script>
 const lines = [
-  "Victor Fabricio Rodrigues Fonseca aparece.",
-  "22 anos. Nascido em 12/06/2004.",
-  "Masculino. Solteiro. Natural de Belem - PA.",
-  "Estudante de Ciencia da Computacao na UNAMA.",
-  "Media global 8.61. Voce sente a determinacao..."
+  "Victor Fabricio aparece.",
+  "Estudante de Ciencia da Computacao.",
+  "22 anos.",
+  "Voce sente a determinacao de um grande programador..."
 ];
 
 let currentLine = 0;
 let currentChar = 0;
 const dialogue = document.getElementById('dialogue');
 const stats = document.getElementById('stats');
+
+// Musiquinha de fundo chiptune (loop)
+let bgAudioCtx;
+let bgGain;
+let isMusicPlaying = false;
+
+function startBackgroundMusic() {
+  if (isMusicPlaying) return;
+  isMusicPlaying = true;
+  if (!bgAudioCtx) bgAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  bgGain = bgAudioCtx.createGain();
+  bgGain.gain.value = 0.06;
+  bgGain.connect(bgAudioCtx.destination);
+
+  const notes = [220, 261.63, 329.63, 392, 329.63, 261.63]; // A3 C4 E4 G4 E4 C4
+  let noteIndex = 0;
+
+  function playNote() {
+    if (!isMusicPlaying) return;
+    const osc = bgAudioCtx.createOscillator();
+    const noteGain = bgAudioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.value = notes[noteIndex % notes.length];
+    noteGain.gain.setValueAtTime(0.3, bgAudioCtx.currentTime);
+    noteGain.gain.exponentialRampToValueAtTime(0.001, bgAudioCtx.currentTime + 0.4);
+    osc.connect(noteGain);
+    noteGain.connect(bgGain);
+    osc.start();
+    osc.stop(bgAudioCtx.currentTime + 0.4);
+    noteIndex++;
+    setTimeout(playNote, 500);
+  }
+  playNote();
+}
+
+// Inicia a música depois do primeiro clique (navegadores bloqueiam autoplay)
+document.addEventListener('click', () => {
+  if (!isMusicPlaying) startBackgroundMusic();
+}, { once: true });
+
+// Som de digitação (blip 8-bit)
+let audioCtx;
+function playBlip() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = 'square';
+  osc.frequency.setValueAtTime(800 + Math.random() * 200, audioCtx.currentTime);
+  gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.05);
+}
 
 function typeLine() {
   if (currentLine >= lines.length) {
@@ -256,6 +311,7 @@ function typeLine() {
   const line = lines[currentLine];
   if (currentChar < line.length) {
     dialogue.textContent += line[currentChar];
+    if (line[currentChar] !== ' ') playBlip(); // não toca em espaço
     currentChar++;
     setTimeout(typeLine, 35);
   } else {
