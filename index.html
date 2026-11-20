@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>* Victor - Ciência da Computação</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; image-rendering: pixelated; }
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'VT323', 'Press Start 2P', monospace;
+  font-size: 24px;
+  line-height: 1.4;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+.container {
+  max-width: 900px;
+  width: 100%;
+}
+.dialogue-box {
+  border: 4px solid #fff;
+  padding: 20px;
+  margin-bottom: 30px;
+  min-height: 140px;
+  background: #000;
+  position: relative;
+}
+.dialogue-box::before {
+  content: "*";
+  position: absolute;
+  left: 12px;
+  top: 16px;
+  font-size: 28px;
+}
+#dialogue {
+  margin-left: 30px;
+  white-space: pre-wrap;
+}
+.stats-screen {
+  display: none;
+  border: 4px solid #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.portrait {
+  width: 160px;
+  height: auto;
+  border: 3px solid #fff;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.name-level {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.hp-bar {
+  display: inline-block;
+  width: 120px;
+  height: 18px;
+  border: 2px solid #fff;
+  margin: 0 8px;
+  vertical-align: middle;
+  position: relative;
+}
+.hp-fill {
+  height: 100%;
+  background: #fff;
+  width: 54%;
+}
+.section {
+  margin: 20px 0;
+  border-top: 2px solid #fff;
+  padding-top: 12px;
+}
+.section h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+.skill-list {
+  list-style: none;
+}
+.skill-list li {
+  padding: 4px 0;
+  font-size: 22px;
+}
+.skill-list li::before {
+  content: "* ";
+}
+.hidden { opacity: 0; transform: translateY(10px); }
+.reveal { animation: fadeIn 0.6s ease forwards; }
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+.footer {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 30px;
+  opacity: 0.7;
+}
+@media (max-width: 600px) {
+  body { font-size: 18px; padding: 20px 10px; }
+  .portrait { width: 120px; }
+  .name-level { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="dialogue-box">
+    <div id="dialogue"></div>
+  </div>
+
+  <div class="stats-screen" id="stats">
+    <div class="header-row">
+      <div class="name-level">
+        VICTOR FABRICIO<br>
+        22 ANOS | 12/06/2004<br>
+        LV 4 | SOLTEIRO<br>
+        HP <span class="hp-bar"><span class="hp-fill"></span></span> 54/100<br>
+        AT 8.61 &nbsp; DF 4<br>
+        BELEM - PA
+      </div>
+      <img src="imagine_images/5lX3s.jpg" alt="Victor" class="portrait">
+    </div>
+
+    <div class="section reveal" style="animation-delay:0.1s">
+      <h2>DADOS PESSOAIS</h2>
+      <ul class="skill-list">
+        <li>Idade .................. 22 anos</li>
+        <li>Nascimento ............ 12/06/2004</li>
+        <li>Sexo .................... Masculino</li>
+        <li>Estado Civil .......... Solteiro</li>
+        <li>Localizacao ........... Belem - PA</li>
+        <li>Contato ................ vfabricio007@gmail.com</li>
+        <li>Telefone ............... (91) 98337-7235</li>
+        <li>GitHub / LinkedIn ...... (em breve)</li>
+      </ul>
+    </div>
+
+    <div class="section reveal" style="animation-delay:0.3s">
+      <h2>IDIOMAS</h2>
+      <ul class="skill-list">
+        <li>Portugues ............. Nativo</li>
+        <li>Ingles ................. Quase fluente</li>
+        <li>Alemao ................. Inicial</li>
+      </ul>
+    </div>
+
+    <div class="section reveal" style="animation-delay:0.35s">
+      <h2>HABILIDADES PESSOAIS</h2>
+      <ul class="skill-list">
+        <li>Comunicacao e fonetica . Excelente</li>
+        <li>Gerenciamento de equipe . Experiencia</li>
+        <li>Lideranca .............. Lider de Turma x2</li>
+        <li>Surdez unilateral ...... Lado esquerdo</li>
+      </ul>
+    </div>
+
+    <div class="section reveal" style="animation-delay:0.2s">
+      <h2>HABILIDADES</h2>
+      <ul class="skill-list">
+        <li>Logica Matematica ........ 10.00</li>
+        <li>Programacao Mobile ........ 10.00</li>
+        <li>Gestao Agil ............... 9.75</li>
+        <li>Sistemas Operacionais ..... 9.75</li>
+        <li>Back-end Frameworks ....... 9.75</li>
+        <li>Matematica Aplicada ....... 9.50</li>
+        <li>Arquitetura de Computadores 9.30</li>
+        <li>POO & Estrutura de Dados .. 9.00</li>
+        <li>Arquitetura de Software ... 9.00</li>
+        <li>Database Application ...... 8.88</li>
+        <li>Engenharia de Software .... 8.80</li>
+        <li>UX/UI Design ............. 8.75</li>
+        <li>Banco de Dados ............ 8.63</li>
+        <li>Front-end Frameworks ...... 8.25</li>
+        <li>Cloud Computing ........... 7.25</li>
+        <li>Web Coding ................ 7.25</li>
+        <li>Redes de Computadores ..... 5.50</li>
+      </ul>
+    </div>
+
+    <div class="section reveal" style="animation-delay:0.4s">
+      <h2>QUESTS CONCLUIDAS</h2>
+      <ul class="skill-list">
+        <li>2023.1 - Fundamentos</li>
+        <li>2023.2 - Engenharia e Dados</li>
+        <li>2024.1 - Sistemas e Mobile</li>
+        <li>2024.2 - Frameworks e Cloud</li>
+      </ul>
+    </div>
+
+    <div class="section reveal" style="animation-delay:0.6s">
+      <h2>QUESTS ATIVAS</h2>
+      <ul class="skill-list">
+        <li>Machine Learning</li>
+        <li>Game Engine</li>
+        <li>Desenvolvimento de Games</li>
+        <li>Empreendedorismo</li>
+        <li>Storytelling</li>
+        <li>Design de Personagens</li>
+        <li>Engenharia de Requisitos</li>
+      </ul>
+    </div>
+
+    <div class="section reveal" style="animation-delay:0.8s">
+      <h2>INVENTARIO</h2>
+      <ul class="skill-list">
+        <li>Lider de Turma x2</li>
+        <li>Certificados estrangeiros ... vazio</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    UNAMA • Ciencia da Computacao • Belém • 20/11/2026
+  </div>
+</div>
+
+<script>
+const lines = [
+  "Victor Fabricio Rodrigues Fonseca aparece.",
+  "22 anos. Nascido em 12/06/2004.",
+  "Masculino. Solteiro. Natural de Belem - PA.",
+  "Estudante de Ciencia da Computacao na UNAMA.",
+  "Media global 8.61. Voce sente a determinacao..."
+];
+
+let currentLine = 0;
+let currentChar = 0;
+const dialogue = document.getElementById('dialogue');
+const stats = document.getElementById('stats');
+
+function typeLine() {
+  if (currentLine >= lines.length) {
+    setTimeout(() => {
+      stats.style.display = 'block';
+    }, 400);
+    return;
+  }
+
+  const line = lines[currentLine];
+  if (currentChar < line.length) {
+    dialogue.textContent += line[currentChar];
+    currentChar++;
+    setTimeout(typeLine, 35);
+  } else {
+    dialogue.textContent += '\n';
+    currentLine++;
+    currentChar = 0;
+    setTimeout(typeLine, 600);
+  }
+}
+
+setTimeout(typeLine, 500);
+</script>
+</body>
+</html>
